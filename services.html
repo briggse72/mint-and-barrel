@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | Mint & Barrel</title>
+  <meta name="description" content="Explore Mint & Barrel's mobile bar packages for weddings in Utah County and Salt Lake County. Beer & wine, specialty cocktails, and champagne toasts." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet" />
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #ffffff;
+      color: #1a1410;
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    :root {
+      --gold: #b8922a;
+      --gold-light: #c9a84c;
+      --gold-pale: #f5ead8;
+      --gold-dim: #b8922a22;
+      --gold-border: #b8922a33;
+      --mint: #3a7a4a;
+      --charcoal: #1a1410;
+      --muted: #7a6a54;
+      --light-muted: #b5a898;
+      --border: #e8ddd0;
+      --bg: #ffffff;
+      --bg-2: #faf7f2;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 60px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: #ffffffee;
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.14em;
+    }
+    .logo span { color: var(--mint); }
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .nav-cta {
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 9px 22px;
+    }
+    .nav-links .nav-cta:hover { background: var(--gold-dim); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span { display: block; width: 24px; height: 1px; background: var(--gold); }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .mobile-menu a {
+      padding: 14px 40px;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu.open { display: flex; }
+
+    /* ── Page Header ── */
+    .page-header {
+      padding: 80px 60px 70px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header-geo {
+      position: absolute;
+      inset: 0;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+    .page-header-content { position: relative; z-index: 1; }
+    .page-label {
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      color: var(--mint);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 6vw, 58px);
+      font-weight: 300;
+      color: var(--charcoal);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .page-title em { color: var(--gold); font-style: italic; }
+    .deco-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 0 auto;
+    }
+    .deco-line {
+      height: 1px;
+      width: 80px;
+      background: linear-gradient(90deg, transparent, var(--gold-light));
+    }
+    .deco-line.r { background: linear-gradient(90deg, var(--gold-light), transparent); }
+    .deco-diamond {
+      width: 7px;
+      height: 7px;
+      background: var(--gold-light);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .page-desc {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      line-height: 2.2;
+      max-width: 500px;
+      margin: 22px auto 0;
+    }
+
+    /* ── Packages ── */
+    .packages {
+      padding: 80px 60px;
+      background: var(--bg);
+    }
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .package-card {
+      background: var(--bg);
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .package-card.featured {
+      background: var(--charcoal);
+    }
+    .featured-badge {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #fff;
+      font-size: 8px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      padding: 6px 20px;
+    }
+    .package-icon {
+      font-size: 28px;
+      color: var(--gold-light);
+      margin-bottom: 24px;
+    }
+    .package-card.featured .package-icon { color: var(--gold-light); }
+    .package-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--charcoal);
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    .package-card.featured .package-name { color: #f0e6c8; }
+    .package-tagline {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+    .package-card.featured .package-tagline { color: var(--gold-light); }
+    .package-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 28px;
+    }
+    .package-card.featured .package-divider { background: #3a3028; }
+    .package-desc {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      line-height: 2.2;
+      margin-bottom: 30px;
+      flex-grow: 1;
+    }
+    .package-card.featured .package-desc { color: #a89878; }
+    .package-includes {
+      list-style: none;
+      margin-bottom: 36px;
+    }
+    .package-includes li {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .package-card.featured .package-includes li {
+      color: #a89878;
+      border-bottom-color: #3a3028;
+    }
+    .package-includes li::before {
+      content: '◆';
+      font-size: 6px;
+      color: var(--gold-light);
+      flex-shrink: 0;
+    }
+    .package-includes li:last-child { border-bottom: none; }
+    .package-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      color: var(--light-muted);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .package-card.featured .package-price { color: #6a5a4a; }
+    .btn {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--gold-dim); }
+    .btn-filled {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+    }
+    .btn-filled:hover { background: var(--gold-light); border-color: var(--gold-light); }
+    .btn-mint {
+      border-color: var(--mint);
+      color: var(--mint);
+    }
+    .btn-mint:hover { background: #3a7a4a18; }
+
+    /* ── What's Always Included ── */
+    .always-included {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 70px 60px;
+      text-align: center;
+    }
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      color: var(--mint);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 300;
+      color: var(--charcoal);
+      letter-spacing: 0.05em;
+      margin-bottom: 50px;
+    }
+    .included-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .included-item {
+      background: var(--bg);
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .included-icon {
+      font-size: 20px;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+    .included-label {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ── How It Works ── */
+    .how-it-works {
+      padding: 80px 60px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      max-width: 1000px;
+      margin: 50px auto 0;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 12.5%;
+      right: 12.5%;
+      height: 1px;
+      background: var(--border);
+    }
+    .step { padding: 0 20px; }
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      background: var(--bg);
+      position: relative;
+      z-index: 1;
+    }
+    .step-num span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      color: var(--gold);
+      font-weight: 400;
+    }
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      color: var(--charcoal);
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+    .step-desc {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--light-muted);
+      line-height: 2;
+    }
+
+    /* ── CTA Band ── */
+    .cta-band {
+      padding: 90px 60px;
+      text-align: center;
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, #b8922a10 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 300;
+      color: #f0e6c8;
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+    }
+    .cta-sub {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: #a89878;
+      margin-bottom: 40px;
+      line-height: 2.2;
+    }
+    .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--charcoal);
+      padding: 32px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      border-top: 1px solid #2a2018;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      color: var(--gold-light);
+      letter-spacing: 0.14em;
+    }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #6a5a4a;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold-light); }
+    .footer-copy { font-size: 9px; letter-spacing: 0.15em; color: #6a5a4a; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .packages-grid { grid-template-columns: 1fr; }
+      .included-grid { grid-template-columns: repeat(3, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+      .steps::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .page-header, .packages, .always-included, .how-it-works, .cta-band { padding: 60px 24px; }
+      .included-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: 1fr; gap: 36px; }
+      footer { padding: 28px 24px; flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="logo">MINT <span>&</span> BARREL</a>
+    <ul class="nav-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contact.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Book Now</a>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <svg class="page-header-geo" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polygon points="600,10 1180,200 600,390 20,200" fill="none" stroke="#b8922a" stroke-width="1.2"/>
+      <polygon points="600,50 1120,200 600,350 80,200" fill="none" stroke="#b8922a" stroke-width="0.6"/>
+      <circle cx="600" cy="200" r="120" fill="none" stroke="#b8922a" stroke-width="0.6"/>
+      <line x1="20" y1="200" x2="1180" y2="200" stroke="#b8922a" stroke-width="0.6"/>
+      <line x1="600" y1="10" x2="600" y2="390" stroke="#b8922a" stroke-width="0.6"/>
+    </svg>
+    <div class="page-header-content">
+      <p class="page-label">What We Offer</p>
+      <h1 class="page-title">Our <em>Packages</em></h1>
+      <div class="deco-divider">
+        <div class="deco-line"></div>
+        <div class="deco-diamond"></div>
+        <div class="deco-line r"></div>
+      </div>
+      <p class="page-desc">Every package is tailored to your event. Reach out and we'll build the perfect bar experience for your big day.</p>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <section class="packages">
+    <div class="packages-grid">
+
+      <!-- Beer & Wine -->
+      <div class="package-card">
+        <div class="package-icon">◇</div>
+        <h2 class="package-name">Beer &amp; Wine</h2>
+        <p class="package-tagline">Classic &amp; Refined</p>
+        <div class="package-divider"></div>
+        <p class="package-desc">A curated selection of beers and wines served beautifully — the perfect elegant option for any wedding reception.</p>
+        <ul class="package-includes">
+          <li>Curated beer &amp; wine selection</li>
+          <li>Bar setup &amp; breakdown</li>
+          <li>Glassware &amp; cups</li>
+          <li>Garnishes &amp; mixers</li>
+          <li>Ice &amp; cooling</li>
+          <li>Professional bartender(s)</li>
+        </ul>
+        <p class="package-price">Contact for pricing</p>
+        <a href="contact.html" class="btn">Book a Consultation</a>
+      </div>
+
+      <!-- Specialty Cocktails (Featured) -->
+      <div class="package-card featured">
+        <div class="featured-badge">Most Popular</div>
+        <div class="package-icon">✦</div>
+        <h2 class="package-name">Specialty Cocktails</h2>
+        <p class="package-tagline">Signature &amp; Memorable</p>
+        <div class="package-divider"></div>
+        <p class="package-desc">A custom cocktail menu designed around you — signature drinks with your names, your story, your flavors. The bar becomes part of the experience.</p>
+        <ul class="package-includes">
+          <li>Custom signature cocktail menu</li>
+          <li>Bar setup &amp; breakdown</li>
+          <li>Glassware &amp; cups</li>
+          <li>Garnishes &amp; mixers</li>
+          <li>Ice &amp; cooling</li>
+          <li>Professional bartender(s)</li>
+        </ul>
+        <p class="package-price">Contact for pricing</p>
+        <a href="contact.html" class="btn btn-filled">Book a Consultation</a>
+      </div>
+
+      <!-- Champagne Toast -->
+      <div class="package-card">
+        <div class="package-icon">◈</div>
+        <h2 class="package-name">Champagne Toast</h2>
+        <p class="package-tagline">Celebrate the Moment</p>
+        <div class="package-divider"></div>
+        <p class="package-desc">A beautifully executed champagne toast service for your ceremony or reception — the perfect finishing touch to your celebration.</p>
+        <ul class="package-includes">
+          <li>Champagne pour service</li>
+          <li>Bar setup &amp; breakdown</li>
+          <li>Glassware &amp; flutes</li>
+          <li>Professional bartender(s)</li>
+          <li>Can be added to any package</li>
+        </ul>
+        <p class="package-price">Contact for pricing</p>
+        <a href="contact.html" class="btn">Book a Consultation</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Always Included -->
+  <section class="always-included">
+    <p class="section-label">Every Package Includes</p>
+    <h2 class="section-title">We Handle Everything</h2>
+    <div class="included-grid">
+      <div class="included-item">
+        <div class="included-icon">◈</div>
+        <p class="included-label">Bar Setup &amp;<br>Breakdown</p>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">◇</div>
+        <p class="included-label">Glassware<br>&amp; Cups</p>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">✦</div>
+        <p class="included-label">Garnishes<br>&amp; Mixers</p>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">◆</div>
+        <p class="included-label">Ice &amp;<br>Cooling</p>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">❖</div>
+        <p class="included-label">Professional<br>Bartender(s)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works">
+    <p class="section-label">The Process</p>
+    <h2 class="section-title">How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"><span>1</span></div>
+        <h3 class="step-title">Reach Out</h3>
+        <p class="step-desc">Fill out our contact form with your date, venue, and vision.</p>
+      </div>
+      <div class="step">
+        <div class="step-num"><span>2</span></div>
+        <h3 class="step-title">Consultation</h3>
+        <p class="step-desc">We chat through your needs and build a package just for you.</p>
+      </div>
+      <div class="step">
+        <div class="step-num"><span>3</span></div>
+        <h3 class="step-title">We Plan</h3>
+        <p class="step-desc">Menu design, logistics, and every detail handled in advance.</p>
+      </div>
+      <div class="step">
+        <div class="step-num"><span>4</span></div>
+        <h3 class="step-title">You Celebrate</h3>
+        <p class="step-desc">We show up, set up, and pour — you enjoy every moment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <h2 class="cta-title">Let's Build Your Perfect Bar</h2>
+    <p class="cta-sub">
+      Every wedding is different. Let's talk about yours.<br>
+      Serving Utah County &amp; Salt Lake County.
+    </p>
+    <div class="btn-group">
+      <a href="contact.html" class="btn btn-filled">Book a Consultation</a>
+      <a href="faq.html" class="btn btn-mint">Read the FAQ</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">MINT <span style="color:#3a7a4a">&</span> BARREL</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <p class="footer-copy">&copy; 2025 Mint &amp; Barrel &nbsp;◆&nbsp; Utah</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
