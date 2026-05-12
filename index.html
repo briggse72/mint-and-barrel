@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mint & Barrel | Mobile Bar for Utah Weddings</title>
-  <meta name="description" content="Utah's premier mobile bartending service for weddings and events. Fully licensed, custom cocktail menus, serving Salt Lake City, Park City, Utah County and beyond." />
+  <meta name="description" content="Utah and Salt Lake County's premier mobile bartending service for weddings and events. Fully licensed, custom cocktail menus." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet" />
   <style>
@@ -13,8 +13,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      background: #0d1a12;
-      color: #e8dfc7;
+      background: #ffffff;
+      color: #1a1410;
       font-family: 'Josefin Sans', sans-serif;
       font-weight: 300;
       line-height: 1.6;
@@ -24,16 +24,19 @@
 
     /* ── CSS Variables ── */
     :root {
-      --gold: #c9a84c;
-      --gold-dim: #c9a84c44;
-      --mint: #7ab87a;
-      --cream: #f0e6c8;
-      --warm: #e8dfc7;
-      --muted: #a89878;
-      --dark-muted: #7a6a4a;
-      --border: #7a6a3a44;
-      --bg: #0d1a12;
-      --bg-2: #111e16;
+      --gold: #b8922a;
+      --gold-light: #c9a84c;
+      --gold-pale: #f5ead8;
+      --gold-dim: #b8922a22;
+      --gold-border: #b8922a33;
+      --mint: #3a7a4a;
+      --cream: #faf7f2;
+      --charcoal: #1a1410;
+      --muted: #7a6a54;
+      --light-muted: #b5a898;
+      --border: #e8ddd0;
+      --bg: #ffffff;
+      --bg-2: #faf7f2;
     }
 
     /* ── Navigation ── */
@@ -45,7 +48,7 @@
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      background: #0d1a12ee;
+      background: #ffffffee;
       backdrop-filter: blur(8px);
       z-index: 100;
     }
@@ -57,23 +60,22 @@
       letter-spacing: 0.14em;
     }
     .logo span { color: var(--mint); }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
     .nav-links a {
       font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: #c9b98a;
+      color: var(--muted);
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--gold); }
     .nav-links .nav-cta {
       border: 1px solid var(--gold);
       color: var(--gold);
-      padding: 8px 20px;
+      padding: 9px 22px;
     }
     .nav-links .nav-cta:hover { background: var(--gold-dim); }
 
-    /* Mobile nav toggle */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -88,7 +90,6 @@
       width: 24px;
       height: 1px;
       background: var(--gold);
-      transition: all 0.3s;
     }
     .mobile-menu {
       display: none;
@@ -102,7 +103,7 @@
       font-size: 11px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: #c9b98a;
+      color: var(--muted);
       border-bottom: 1px solid var(--border);
     }
     .mobile-menu a:last-child { border-bottom: none; }
@@ -115,11 +116,12 @@
       text-align: center;
       overflow: hidden;
       border-bottom: 1px solid var(--border);
+      background: var(--bg);
     }
     .hero-geo {
       position: absolute;
       inset: 0;
-      opacity: 0.08;
+      opacity: 0.06;
       pointer-events: none;
     }
     .hero-content { position: relative; z-index: 1; }
@@ -134,7 +136,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(42px, 7vw, 72px);
       font-weight: 300;
-      color: var(--cream);
+      color: var(--charcoal);
       line-height: 1.08;
       letter-spacing: 0.04em;
       margin-bottom: 12px;
@@ -155,13 +157,13 @@
     .deco-line {
       height: 1px;
       width: 100px;
-      background: linear-gradient(90deg, transparent, var(--gold));
+      background: linear-gradient(90deg, transparent, var(--gold-light));
     }
-    .deco-line.r { background: linear-gradient(90deg, var(--gold), transparent); }
+    .deco-line.r { background: linear-gradient(90deg, var(--gold-light), transparent); }
     .deco-diamond {
       width: 8px;
       height: 8px;
-      background: var(--gold);
+      background: var(--gold-light);
       transform: rotate(45deg);
       flex-shrink: 0;
     }
@@ -183,7 +185,7 @@
       letter-spacing: 0.3em;
       text-transform: uppercase;
       padding: 16px 44px;
-      transition: background 0.3s;
+      transition: all 0.3s;
       cursor: pointer;
     }
     .btn:hover { background: var(--gold-dim); }
@@ -191,30 +193,36 @@
       border-color: var(--mint);
       color: var(--mint);
     }
-    .btn-mint:hover { background: #7ab87a22; }
+    .btn-mint:hover { background: #3a7a4a18; }
+    .btn-filled {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+    }
+    .btn-filled:hover { background: var(--gold-light); border-color: var(--gold-light); }
 
     /* ── Marquee ── */
     .marquee-bar {
-      background: #c9a84c0a;
-      border-top: 1px solid #c9a84c33;
-      border-bottom: 1px solid #c9a84c33;
+      background: var(--gold-pale);
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
       padding: 14px 0;
       overflow: hidden;
     }
     .marquee-track {
       display: flex;
       gap: 40px;
-      animation: marquee 20s linear infinite;
+      animation: marquee 22s linear infinite;
       width: max-content;
     }
     .marquee-item {
       font-size: 9px;
       letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: #c9a84c88;
+      color: var(--gold);
       white-space: nowrap;
     }
-    .marquee-dot { color: var(--gold); }
+    .marquee-dot { color: var(--gold-light); }
     @keyframes marquee {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
@@ -225,6 +233,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       border-top: 1px solid var(--border);
+      background: var(--bg);
     }
     .feature {
       padding: 50px 40px;
@@ -233,58 +242,103 @@
     }
     .feature:last-child { border-right: none; }
     .feature-icon {
-      font-size: 28px;
+      font-size: 26px;
+      color: var(--gold-light);
       margin-bottom: 18px;
     }
     .feature-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: 20px;
-      color: var(--warm);
+      color: var(--charcoal);
       letter-spacing: 0.08em;
       margin-bottom: 10px;
     }
     .feature-desc {
       font-size: 10px;
       letter-spacing: 0.1em;
-      color: var(--dark-muted);
+      color: var(--light-muted);
       line-height: 2.2;
+    }
+
+    /* ── Service Area Band ── */
+    .area-band {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 44px 60px;
+      text-align: center;
+    }
+    .area-label {
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      color: var(--mint);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .area-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+    .area-text strong {
+      color: var(--charcoal);
+      font-weight: 400;
     }
 
     /* ── Testimonial ── */
     .testimonial {
-      padding: 80px 60px;
+      padding: 90px 60px;
       text-align: center;
-      border-top: 1px solid var(--border);
-      background: var(--bg-2);
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonial::before {
+      content: '\201C';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 240px;
+      color: var(--gold-light);
+      opacity: 0.06;
+      line-height: 1;
+      pointer-events: none;
     }
     .testimonial-label {
       font-size: 9px;
       letter-spacing: 0.4em;
-      color: var(--mint);
+      color: var(--gold-light);
       text-transform: uppercase;
       margin-bottom: 30px;
     }
     .testimonial-quote {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(20px, 3vw, 26px);
+      font-size: clamp(20px, 3vw, 28px);
       font-style: italic;
       font-weight: 300;
-      color: var(--cream);
+      color: #f0e6c8;
       line-height: 1.7;
-      max-width: 580px;
-      margin: 0 auto 24px;
+      max-width: 600px;
+      margin: 0 auto 28px;
+      position: relative;
+      z-index: 1;
     }
     .testimonial-attr {
       font-size: 10px;
       letter-spacing: 0.22em;
-      color: var(--mint);
+      color: var(--gold-light);
       text-transform: uppercase;
     }
 
     /* ── CTA Band ── */
     .cta-band {
-      padding: 80px 60px;
+      padding: 90px 60px;
       text-align: center;
+      background: var(--bg);
       border-top: 1px solid var(--border);
       position: relative;
       overflow: hidden;
@@ -293,68 +347,70 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at center, #c9a84c08 0%, transparent 70%);
+      background: radial-gradient(ellipse at center, #b8922a08 0%, transparent 65%);
       pointer-events: none;
     }
     .cta-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(28px, 4vw, 42px);
+      font-size: clamp(28px, 4vw, 44px);
       font-weight: 300;
-      color: var(--cream);
-      letter-spacing: 0.06em;
+      color: var(--charcoal);
+      letter-spacing: 0.05em;
       margin-bottom: 14px;
     }
     .cta-sub {
       font-size: 11px;
       letter-spacing: 0.16em;
       color: var(--muted);
-      margin-bottom: 36px;
+      margin-bottom: 40px;
+      line-height: 2.2;
     }
-    .btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
     /* ── Footer ── */
     footer {
-      padding: 30px 60px;
+      background: var(--charcoal);
+      padding: 32px 60px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 14px;
-      border-top: 1px solid var(--border);
     }
     .footer-logo {
       font-family: 'Cormorant Garamond', serif;
       font-size: 16px;
-      color: var(--gold);
+      color: var(--gold-light);
       letter-spacing: 0.14em;
     }
-    .footer-links { display: flex; gap: 24px; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
     .footer-links a {
       font-size: 9px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: #4a3a2a;
+      color: #6a5a4a;
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--gold); }
+    .footer-links a:hover { color: var(--gold-light); }
     .footer-copy {
       font-size: 9px;
       letter-spacing: 0.15em;
-      color: #4a3a2a;
+      color: #6a5a4a;
     }
 
     /* ── Responsive ── */
     @media (max-width: 768px) {
-      nav { padding: 18px 28px; }
+      nav { padding: 18px 24px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .hero { padding: 70px 28px 60px; }
+      .hero { padding: 70px 24px 60px; }
       .features { grid-template-columns: 1fr; }
       .feature { border-right: none; border-bottom: 1px solid var(--border); }
       .feature:last-child { border-bottom: none; }
-      .testimonial, .cta-band { padding: 60px 28px; }
-      footer { padding: 24px 28px; flex-direction: column; text-align: center; }
-      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .area-band { padding: 36px 24px; }
+      .testimonial, .cta-band { padding: 60px 24px; }
+      footer { padding: 28px 24px; flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
     }
 
   </style>
@@ -386,18 +442,18 @@
   <!-- Hero -->
   <section class="hero">
     <svg class="hero-geo" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <polygon points="600,20 1160,300 600,580 40,300" fill="none" stroke="#c9a84c" stroke-width="1"/>
-      <polygon points="600,70 1100,300 600,530 100,300" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
-      <polygon points="600,130 1020,300 600,470 180,300" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
-      <line x1="40" y1="300" x2="1160" y2="300" stroke="#c9a84c" stroke-width="0.5"/>
-      <line x1="600" y1="20" x2="600" y2="580" stroke="#c9a84c" stroke-width="0.5"/>
-      <line x1="40" y1="300" x2="600" y2="20" stroke="#c9a84c" stroke-width="0.3"/>
-      <line x1="40" y1="300" x2="600" y2="580" stroke="#c9a84c" stroke-width="0.3"/>
-      <line x1="1160" y1="300" x2="600" y2="20" stroke="#c9a84c" stroke-width="0.3"/>
-      <line x1="1160" y1="300" x2="600" y2="580" stroke="#c9a84c" stroke-width="0.3"/>
-      <circle cx="600" cy="300" r="160" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
-      <circle cx="600" cy="300" r="80" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
-      <rect x="510" y="210" width="180" height="180" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(45 600 300)"/>
+      <polygon points="600,20 1160,300 600,580 40,300" fill="none" stroke="#b8922a" stroke-width="1.5"/>
+      <polygon points="600,70 1100,300 600,530 100,300" fill="none" stroke="#b8922a" stroke-width="0.8"/>
+      <polygon points="600,130 1020,300 600,470 180,300" fill="none" stroke="#b8922a" stroke-width="0.5"/>
+      <line x1="40" y1="300" x2="1160" y2="300" stroke="#b8922a" stroke-width="0.8"/>
+      <line x1="600" y1="20" x2="600" y2="580" stroke="#b8922a" stroke-width="0.8"/>
+      <line x1="40" y1="300" x2="600" y2="20" stroke="#b8922a" stroke-width="0.4"/>
+      <line x1="40" y1="300" x2="600" y2="580" stroke="#b8922a" stroke-width="0.4"/>
+      <line x1="1160" y1="300" x2="600" y2="20" stroke="#b8922a" stroke-width="0.4"/>
+      <line x1="1160" y1="300" x2="600" y2="580" stroke="#b8922a" stroke-width="0.4"/>
+      <circle cx="600" cy="300" r="160" fill="none" stroke="#b8922a" stroke-width="0.8"/>
+      <circle cx="600" cy="300" r="80" fill="none" stroke="#b8922a" stroke-width="0.5"/>
+      <rect x="510" y="210" width="180" height="180" fill="none" stroke="#b8922a" stroke-width="0.8" transform="rotate(45 600 300)"/>
     </svg>
 
     <div class="hero-content">
@@ -411,10 +467,11 @@
         <div class="deco-line r"></div>
       </div>
       <p class="hero-desc">
-        Bringing elevated bar experiences to weddings &amp; events across Utah —
-        fully licensed, beautifully styled, unforgettably served.
+        Bringing elevated bar experiences to weddings &amp; events across
+        Utah County and Salt Lake County — fully licensed, beautifully styled,
+        unforgettably served.
       </p>
-      <a href="contact.html" class="btn">Check Your Date</a>
+      <a href="contact.html" class="btn btn-filled">Book a Consultation</a>
     </div>
   </section>
 
@@ -423,20 +480,18 @@
     <div class="marquee-track">
       <span class="marquee-item">Weddings</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
       <span class="marquee-item">Custom Cocktails</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
-      <span class="marquee-item">Salt Lake City</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
-      <span class="marquee-item">Park City</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
+      <span class="marquee-item">Salt Lake County</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
       <span class="marquee-item">Utah County</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
       <span class="marquee-item">Fully Licensed &amp; Insured</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
       <span class="marquee-item">Signature Bar Setups</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
-      <span class="marquee-item">St. George</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
+      <span class="marquee-item">Mocktail Menus</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
       <span class="marquee-item">Weddings</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
       <span class="marquee-item">Custom Cocktails</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
-      <span class="marquee-item">Salt Lake City</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
-      <span class="marquee-item">Park City</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
+      <span class="marquee-item">Salt Lake County</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
       <span class="marquee-item">Utah County</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
       <span class="marquee-item">Fully Licensed &amp; Insured</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
       <span class="marquee-item">Signature Bar Setups</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
-      <span class="marquee-item">St. George</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
+      <span class="marquee-item">Mocktail Menus</span><span class="marquee-dot">&nbsp;◆&nbsp;</span>
     </div>
   </div>
 
@@ -454,10 +509,19 @@
     </div>
     <div class="feature">
       <div class="feature-icon">◇</div>
-      <h3 class="feature-title">Located in Utah</h3>
-      <p class="feature-desc">Servicing Salt Lake and Utah County — we come to you.</p>
+      <h3 class="feature-title">Beautifully Styled Bars</h3>
+      <p class="feature-desc">Every setup is designed to complement your venue and wow your guests.</p>
     </div>
   </section>
+
+  <!-- Service Area -->
+  <div class="area-band">
+    <p class="area-label">Where We Serve</p>
+    <p class="area-text">
+      Proudly serving <strong>Utah County</strong> and <strong>Salt Lake County</strong>
+      &nbsp;◆&nbsp; Based in Utah
+    </p>
+  </div>
 
   <!-- Testimonial -->
   <section class="testimonial">
@@ -466,22 +530,25 @@
       "Mint &amp; Barrel made our wedding bar the highlight of the night.
       Every single guest raved about the cocktails."
     </blockquote>
-    <p class="testimonial-attr">— Sarah &amp; Jake &nbsp;◆&nbsp; Thanksgiving Point</p>
+    <p class="testimonial-attr">— Sarah &amp; Jake</p>
   </section>
 
   <!-- CTA Band -->
   <section class="cta-band">
     <h2 class="cta-title">Ready to Elevate Your Celebration?</h2>
-    <p class="cta-sub">Let's talk about your date, your venue, and your dream bar setup.</p>
+    <p class="cta-sub">
+      Let's talk about your date, your venue, and your dream bar setup.<br>
+      Serving Utah County &amp; Salt Lake County.
+    </p>
     <div class="btn-group">
-      <a href="contact.html" class="btn">Book a Consultation</a>
+      <a href="contact.html" class="btn btn-filled">Book a Consultation</a>
       <a href="services.html" class="btn btn-mint">View Packages</a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <div class="footer-logo">MINT <span style="color:#7ab87a">&</span> BARREL</div>
+    <div class="footer-logo">MINT <span style="color:#3a7a4a">&</span> BARREL</div>
     <nav class="footer-links" aria-label="Footer navigation">
       <a href="services.html">Services</a>
       <a href="gallery.html">Gallery</a>
