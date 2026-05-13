@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Mint & Barrel</title>
+  <meta name="description" content="Meet Michael and Briggs Stringham, the team behind Mint & Barrel — Utah's premier mobile bartending service for weddings." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet" />
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #ffffff;
+      color: #1a1410;
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    :root {
+      --gold: #b8922a;
+      --gold-light: #c9a84c;
+      --gold-pale: #f5ead8;
+      --gold-dim: #b8922a22;
+      --gold-border: #b8922a33;
+      --mint: #3a7a4a;
+      --charcoal: #1a1410;
+      --muted: #7a6a54;
+      --light-muted: #b5a898;
+      --border: #e8ddd0;
+      --bg: #ffffff;
+      --bg-2: #faf7f2;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 60px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: #ffffffee;
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.14em;
+    }
+    .logo span { color: var(--mint); }
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .nav-cta {
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 9px 22px;
+    }
+    .nav-links .nav-cta:hover { background: var(--gold-dim); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span { display: block; width: 24px; height: 1px; background: var(--gold); }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .mobile-menu a {
+      padding: 14px 40px;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu.open { display: flex; }
+
+    /* ── Page Header ── */
+    .page-header {
+      padding: 80px 60px 70px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header-geo {
+      position: absolute;
+      inset: 0;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+    .page-header-content { position: relative; z-index: 1; }
+    .page-label {
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      color: var(--mint);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 6vw, 58px);
+      font-weight: 300;
+      color: var(--charcoal);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .page-title em { color: var(--gold); font-style: italic; }
+    .deco-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 0 auto;
+    }
+    .deco-line {
+      height: 1px;
+      width: 80px;
+      background: linear-gradient(90deg, transparent, var(--gold-light));
+    }
+    .deco-line.r { background: linear-gradient(90deg, var(--gold-light), transparent); }
+    .deco-diamond {
+      width: 7px;
+      height: 7px;
+      background: var(--gold-light);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .page-desc {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      line-height: 2.2;
+      max-width: 480px;
+      margin: 22px auto 0;
+    }
+
+    /* ── Story Section ── */
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 90px 60px;
+      gap: 80px;
+      align-items: center;
+    }
+    .story-text {}
+    .story-label {
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      color: var(--mint);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .story-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 300;
+      color: var(--charcoal);
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      margin-bottom: 28px;
+    }
+    .story-title em { color: var(--gold); font-style: italic; }
+    .story-body {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      line-height: 2.6;
+      margin-bottom: 18px;
+    }
+    .story-body:last-child { margin-bottom: 0; }
+
+    /* Photo placeholder */
+    .story-photo {
+      position: relative;
+    }
+    .photo-frame {
+      aspect-ratio: 3 / 4;
+      background: var(--gold-pale);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border: 1px solid var(--gold-border);
+      pointer-events: none;
+    }
+    .photo-icon {
+      font-size: 36px;
+      color: var(--gold-light);
+      opacity: 0.5;
+    }
+    .photo-hint {
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--light-muted);
+      text-align: center;
+      line-height: 2;
+      padding: 0 30px;
+    }
+    .photo-caption {
+      margin-top: 16px;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Values Grid ── */
+    .values {
+      background: var(--charcoal);
+      padding: 80px 60px;
+      text-align: center;
+    }
+    .values-label {
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .values-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 300;
+      color: #f0e6c8;
+      letter-spacing: 0.05em;
+      margin-bottom: 50px;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: #2a2018;
+      border: 1px solid #2a2018;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .value-card {
+      background: #1a1410;
+      padding: 44px 32px;
+      text-align: center;
+    }
+    .value-icon {
+      font-size: 22px;
+      color: var(--gold-light);
+      margin-bottom: 18px;
+    }
+    .value-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      color: #f0e6c8;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    .value-desc {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: #7a6a54;
+      line-height: 2.2;
+    }
+
+    /* ── Credentials ── */
+    .credentials {
+      padding: 80px 60px;
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .cred-label {
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      color: var(--mint);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .cred-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 300;
+      color: var(--charcoal);
+      letter-spacing: 0.05em;
+      margin-bottom: 50px;
+    }
+    .cred-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .cred-item {
+      background: var(--bg);
+      padding: 36px 28px;
+      text-align: center;
+    }
+    .cred-icon {
+      font-size: 22px;
+      color: var(--gold-light);
+      margin-bottom: 14px;
+    }
+    .cred-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      color: var(--charcoal);
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    .cred-desc {
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: var(--light-muted);
+      line-height: 2;
+      text-transform: uppercase;
+    }
+
+    /* ── CTA ── */
+    .cta-band {
+      padding: 90px 60px;
+      text-align: center;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, #b8922a08 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 300;
+      color: var(--charcoal);
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+    }
+    .cta-sub {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 40px;
+      line-height: 2.2;
+    }
+    .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      padding: 15px 40px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--gold-dim); }
+    .btn-filled {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+    }
+    .btn-filled:hover { background: var(--gold-light); border-color: var(--gold-light); }
+    .btn-mint {
+      border-color: var(--mint);
+      color: var(--mint);
+    }
+    .btn-mint:hover { background: #3a7a4a18; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--charcoal);
+      padding: 32px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      border-top: 1px solid #2a2018;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      color: var(--gold-light);
+      letter-spacing: 0.14em;
+    }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #6a5a4a;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold-light); }
+    .footer-copy { font-size: 9px; letter-spacing: 0.15em; color: #6a5a4a; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .story { grid-template-columns: 1fr; gap: 50px; }
+      .story-photo { max-width: 420px; margin: 0 auto; width: 100%; }
+      .values-grid, .cred-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .page-header { padding: 60px 24px; }
+      .story { padding: 60px 24px; }
+      .values, .credentials, .cta-band { padding: 60px 24px; }
+      .cred-grid { grid-template-columns: 1fr; }
+      footer { padding: 28px 24px; flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="logo">MINT <span>&</span> BARREL</a>
+    <ul class="nav-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contact.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Book Now</a>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <svg class="page-header-geo" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polygon points="600,10 1180,200 600,390 20,200" fill="none" stroke="#b8922a" stroke-width="1.2"/>
+      <polygon points="600,50 1120,200 600,350 80,200" fill="none" stroke="#b8922a" stroke-width="0.6"/>
+      <circle cx="600" cy="200" r="120" fill="none" stroke="#b8922a" stroke-width="0.6"/>
+      <line x1="20" y1="200" x2="1180" y2="200" stroke="#b8922a" stroke-width="0.6"/>
+      <line x1="600" y1="10" x2="600" y2="390" stroke="#b8922a" stroke-width="0.6"/>
+    </svg>
+    <div class="page-header-content">
+      <p class="page-label">The People Behind the Bar</p>
+      <h1 class="page-title">About <em>Us</em></h1>
+      <div class="deco-divider">
+        <div class="deco-line"></div>
+        <div class="deco-diamond"></div>
+        <div class="deco-line r"></div>
+      </div>
+      <p class="page-desc">Two people, one passion — crafting unforgettable bar experiences for Utah's most special celebrations.</p>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="story">
+    <div class="story-text">
+      <p class="story-label">Our Story</p>
+      <h2 class="story-title">Meet <em>Michael &amp; Briggs</em></h2>
+      <p class="story-body">
+        Mint &amp; Barrel was born from a shared love of great cocktails, beautiful events, and the belief that the bar experience should be just as memorable as everything else on your wedding day.
+      </p>
+      <p class="story-body">
+        As a team, Michael and Briggs bring professionalism, warmth, and craft to every event they serve. From the first consultation to the final pour, their goal is simple — to make your celebration feel effortless and extraordinary.
+      </p>
+      <p class="story-body">
+        Fully licensed and insured, and proudly serving Utah County and Salt Lake County, Mint &amp; Barrel is built on a foundation of trust, quality, and a genuine love for what they do.
+      </p>
+    </div>
+    <div class="story-photo">
+      <div class="photo-frame">
+        <div class="photo-icon">◈</div>
+        <p class="photo-hint">Add your photo here<br>— replace this placeholder<br>with an image tag</p>
+      </div>
+      <p class="photo-caption">Michael &amp; Briggs Stringham</p>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="values">
+    <p class="values-label">What Drives Us</p>
+    <h2 class="values-title">Our Values</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">◈</div>
+        <h3 class="value-title">Craftsmanship</h3>
+        <p class="value-desc">Every drink is made with intention — from the garnish to the glassware, the details matter.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">✦</div>
+        <h3 class="value-title">Professionalism</h3>
+        <p class="value-desc">We show up prepared, on time, and ready to make your event run smoothly from start to finish.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">◇</div>
+        <h3 class="value-title">Personal Touch</h3>
+        <p class="value-desc">No two weddings are the same. We tailor everything to you so your bar feels uniquely yours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials -->
+  <section class="credentials">
+    <p class="cred-label">You're in Good Hands</p>
+    <h2 class="cred-title">Licensed, Insured &amp; Ready</h2>
+    <div class="cred-grid">
+      <div class="cred-item">
+        <div class="cred-icon">◆</div>
+        <h3 class="cred-name">DABC Licensed</h3>
+        <p class="cred-desc">Utah Department of<br>Alcoholic Beverage Control</p>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon">◈</div>
+        <h3 class="cred-name">Fully Insured</h3>
+        <p class="cred-desc">Full liability insurance —<br>certificates available on request</p>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon">✦</div>
+        <h3 class="cred-name">Venue Approved</h3>
+        <p class="cred-desc">We work with your venue<br>to meet all requirements</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <h2 class="cta-title">Let's Work Together</h2>
+    <p class="cta-sub">
+      We'd love to be part of your big day.<br>
+      Reach out and let's start the conversation.
+    </p>
+    <div class="btn-group">
+      <a href="contact.html" class="btn btn-filled">Book a Consultation</a>
+      <a href="services.html" class="btn btn-mint">View Our Packages</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">MINT <span style="color:#3a7a4a">&</span> BARREL</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <p class="footer-copy">&copy; 2025 Mint &amp; Barrel &nbsp;◆&nbsp; Utah</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
